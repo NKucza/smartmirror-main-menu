@@ -1,0 +1,42 @@
+/************ CENTER SCREEN OVERLAY MENU ************/
+
+.meun_item {
+    /*display: block;*/
+    /*color: #000;*/
+}
+
+.mediumMenu{
+	align: right;
+	text-align: right;
+	width: 350px;
+	font-size: 30px;
+  	/*line-height: 35px; */
+}
+
+.table{
+    width: 400px
+}
+
+.tbody{
+    width: 400px
+}
+
+.namecell{
+    padding-right: 5px;
+    width: 500px;
+    text-align: right;
+    display: table-cell;
+}
+
+.valuecell{
+    padding-left: 3px;
+    width: 150px;
+    text-align: left;
+    display: table-cell;
+}
+
+
+.smartmirror-main-menu .pulse {
+    -webkit-animation: MMM-voice-pulse 1s infinite;
+    animation: MMM-voice-pulse 1s infinite;
+}
