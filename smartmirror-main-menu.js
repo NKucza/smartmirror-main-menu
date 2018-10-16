@@ -3,7 +3,7 @@ Module.register("smartmirror-main-menu", {
 	icon: 'fa-microphone-slash',
 	menuObjPointer:  0,
 	selectedNum: -1,
-	
+	currentMenuAmount : 1,
 
 	 defaults: {
 
@@ -36,7 +36,6 @@ Module.register("smartmirror-main-menu", {
 				clock: {title: "Clock", icon: "clock-o" },
 				weather: {title: "Weather", icon: "cloud"},
 				crypto: {title: "Crypto Stock Values", icon: "bitcoin" },
-				stock: {title: "Stock Values", icon: "money-check-alt" },
 				calendar: {title: "Calendar", icon: "calendar"},
 				mensa: {title: "Mensa Offer", icon: "apple" },
 				transportation: {title: "Public Transportation", icon: "bus" },
@@ -136,17 +135,19 @@ Module.register("smartmirror-main-menu", {
 			var namecell = document.createElement("namecell");
 			var cellText = document.createTextNode(this.menuObjPointer[k].title);
 			namecell.appendChild(cellText);
-			namecell.className =  "namecell";
+			//namecell.className =  "namecell";
+			namecell.className =  "valuecell";
 			namecell.onclick = makeOnClickHandler(k);
 			row.appendChild(namecell);
 
 			var span = document.createElement("span");
 	        span.innerHTML = `<i class="fa fa-${this.menuObjPointer[k].icon}" aria-hidden="true"></i>`;
 			if (k == selectedObject){
-				span.classList.add('pulse');  
+				span.classList.add('pulse'); 
+				namecell.classList.add('pulse'); 
 			}
 
-			namecell.className =  "valuecell";
+			
 			span.onclick = makeOnClickHandler(k);
 		
 			row.appendChild(span);
@@ -169,22 +170,64 @@ Module.register("smartmirror-main-menu", {
 			console.log("[" + this.name + "] " + "received: " + payload);
 			if(payload === 'menu'){
 				this.menuObjPointer = this.config.menuObj.main;
+				this.currentMenuAmount = Object.keys(this.menuObjPointer).length;
+				this.selectedNum = -1;
 				this.updateDom();
 			}else if(payload === 'camera'){
 				this.menuObjPointer = this.config.menuObj.camera;
+				this.currentMenuAmount = Object.keys(this.menuObjPointer).length;
+				this.selectedNum = -1;
 				this.updateDom();
 			}else if(payload === 'application'){
 				this.menuObjPointer = this.config.menuObj.application;
+				this.currentMenuAmount = Object.keys(this.menuObjPointer).length;
+				this.selectedNum = -1;
 				this.updateDom();
 			}else if(payload === 'preferences'){
 				this.menuObjPointer = this.config.menuObj.preferences;
+				this.currentMenuAmount = Object.keys(this.menuObjPointer).length;
+				this.selectedNum = -1;
 				this.updateDom();
 			}else if(payload === 'none'){
 				this.menuObjPointer = this.config.menuObj.none;
+				this.currentMenuAmount = Object.keys(this.menuObjPointer).length;
+				this.selectedNum = -1;
 				this.updateDom();
 			}
 		}else if (notification === 'MAIN_MENU_SELECT'){
-			this.selectedNum = payload;
+			if(payload < 0.25)
+				payload = 0;
+			else
+				payload = (payload - 0.25) * 2;
+
+			if(payload > 1)
+				payload = 0.9;
+			
+
+			var selectedItem = parseInt(payload * this.currentMenuAmount);
+
+			if(this.selectedNum != selectedItem){
+				this.selectedNum = selectedItem;
+				console.log("[" + this.name + "] " + "flashing item should be: " + this.selectedNum );
+				this.updateDom();
+			}
+		}else if (notification === 'MAIN_MENU_CLICK_SELECTED'){
+			if(this.selectedNum > -1){
+				var actionName = Object.keys(this.menuObjPointer)[this.selectedNum];
+				this.sendNotification("MENU_CLICKED", actionName);
+				this.selectedNum = -1;
+				this.updateDom();
+			}
+		}else if (notification === 'MAIN_MENU_UP'){
+			this.selectedNum = this.selectedNum -1;
+			if(this.selectedNum < 0)
+				this.selectedNum = this.currentMenuAmount -1 ;
+			this.updateDom();
+		}else if (notification === 'MAIN_MENU_DOWN'){
+			this.selectedNum = this.selectedNum +1;
+			if(this.selectedNum == this.currentMenuAmount)
+				this.selectedNum = 0;
+			this.updateDom();
 		}
 	},
 
