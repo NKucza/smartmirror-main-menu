@@ -1,6 +1,5 @@
 Module.register("smartmirror-main-menu", {
    
-	icon: 'fa-microphone-slash',
 	menuObjPointer:  0,
 	selectedNum: -1,
 	currentMenuAmount : 1,
@@ -41,6 +40,7 @@ Module.register("smartmirror-main-menu", {
 				transportation: {title: "Public Transportation", icon: "bus" },
 				speech: {title: "Speech Recogn. Output", icon: "comment"},
 				newsfeed: {title: "Heise Newsfeed", icon: "rss-square" },
+				bivital: {title: "Vital Data" , icon: "heart"},
 				back: {title: "Back" , icon: "undo" },
 				close: {title: "Close" , icon: "times-circle" }
 			},
