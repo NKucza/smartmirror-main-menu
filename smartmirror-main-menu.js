@@ -41,10 +41,13 @@ Module.register("smartmirror-main-menu", {
 				speech: {title: "Speech Recogn. Output", icon: "comment"},
 				newsfeed: {title: "Heise Newsfeed", icon: "rss-square" },
 				bivital: {title: "Vital Data" , icon: "heart"},
+				soccer:{title: "Soccer Results", icon:"circle"},
 				back: {title: "Back" , icon: "undo" },
 				close: {title: "Close" , icon: "times-circle" }
 			},
 			preferences: {
+				user: {title: "Addjust user settings", icon: "user"},
+				face: {title: "Face recognition settings", icon: "grin"},
 				back: {title: "Back" , icon: "undo" },
 				close: {title: "Close" , icon: "times-circle" }
 			}
@@ -141,7 +144,8 @@ Module.register("smartmirror-main-menu", {
 			row.appendChild(namecell);
 
 			var span = document.createElement("span");
-	        span.innerHTML = `<i class="fa fa-${this.menuObjPointer[k].icon}" aria-hidden="true"></i>`;
+	        	span.innerHTML = `<i class="fa fa-${this.menuObjPointer[k].icon}" aria-hidden="true"></i>`;
+		
 			if (k == selectedObject){
 				span.classList.add('pulse'); 
 				namecell.classList.add('pulse'); 

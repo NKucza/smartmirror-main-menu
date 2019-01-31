@@ -1,5 +1,12 @@
 /************ CENTER SCREEN OVERLAY MENU ************/
 
+
+@-webkit-keyframes MMM-voice-pulse {
+    0% { color: #999; }
+    50% { color: #000; }
+    100% { color: #999; }
+}
+
 .meun_item {
     /*display: block;*/
     /*color: #000;*/
@@ -36,7 +43,9 @@
 }
 
 
-.smartmirror-main-menu .pulse {
+.pulse {
     -webkit-animation: MMM-voice-pulse 1s infinite;
+    -moz-animation: MMM-voice-pulse 1s infinite;
+    -o-animation: MMM-voice-pulse 1s infinite;
     animation: MMM-voice-pulse 1s infinite;
 }
