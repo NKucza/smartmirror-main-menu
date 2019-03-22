@@ -8,13 +8,15 @@ Module.register("smartmirror-main-menu", {
 
 		menuObj:{
 			none: {
-				menu: {title: "Menu" , icon: "bars" },
+				menu: {title: "Menu" , icon: "fa fa-bars" },
 			},			
 			main: {
-				camera: {title: "Camera Demonstration", icon: "television"},
-				applications: {title: "Available Applications" , icon: "clone"},
-				preferences: {title: "Preferences" , icon: "cogs"},
-				close: {title: "Close" , icon: "times-circle" },
+				camera: {title: "Camera Detections", icon: "fa fa-television"},					
+				augmentations: {title: "Image Augmentations", icon: "fa fa-file"},
+				messevideo: {title: "Show messe video", icon: "fa fa-film"},
+				applications: {title: "Available Applications" , icon: "fa fa-clone"},
+				preferences: {title: "Preferences" , icon: "fa fa-cogs"},
+				close: {title: "Close" , icon: "fa fa-times-circle" },
             	//monitorOff: { title: "Turn Off Monitor", icon: "television", source: "SERVER" },
            		//restart: { title: "Restart MagicMirror", icon: "recycle", source: "ALL" },
             	//refresh: { title: "Refresh MagicMirror", icon: "refresh", source: "LOCAL" },
@@ -22,34 +24,53 @@ Module.register("smartmirror-main-menu", {
             	//shutdown: { title: "Shutdown", icon: "power-off", source: "ALL" },
         	},
 			camera: {
-				image: {title: "Toggle Camera Image", icon: "eye"},
-				distance: {title: "Toggle short distance", icon: "compress"},
-				face: {title: "Show / Hide Face Detec.", icon: "user-circle"},
-				objects: {title: "Show / Hide Object Detec.", icon: "coffee"},
-				gesture: {title: "Show / Hide Gesture Rec.", icon: "thumbs-up"},
-				hideALL: {title: "Hide All / Remove All", icon: "eye-slash"},
-				back: {title: "Back" , icon: "undo" },
-				close: {title: "Close" , icon: "times-circle" }
+				image: {title: "Toggle Camera Image", icon: "fa fa-eye"},
+				distance: {title: "Toggle short distance", icon: "fa fa-compress"},
+				face: {title: "Show / Hide Face Detec.", icon: "fa fa-user-circle"},
+				objects: {title: "Show / Hide Object Detec.", icon: "fa fa-coffee"},
+				gesture: {title: "Show / Hide Gesture Rec.", icon: "fa fa-thumbs-up"},
+				hideALL: {title: "Hide All / Remove All", icon: "fa fa-eye-slash"},
+				back: {title: "Back" , icon: "fa fa-undo" },
+				close: {title: "Close" , icon: "fa fa-times-circle" }
+			},
+			augmentations: {
+				aiartmiror: {title: "Ai-Art-Mirror", icon: "fa fa-palette"},
+				randomsytle: {title: "Toggle Styles Automatically", icon : ""},
+				nextsytle: {title: "Next Style", icon: ""},
+				prevsytle: {title: "Previous Style", icon: ""},
+				sourcesytle: {title: "Display Sources", icon: ""},
+				back: {title: "Back" , icon: "fa fa-undo" },
+				close: {title: "Close" , icon: "fa fa-times-circle" }
+			},
+			messevideo: {
+				corlab: {title: "Corlab video", icon: ""},
+				back: {title: "Back" , icon: "fa fa-undo" },
+				close: {title: "Close" , icon: "fa fa-times-circle" }
 			},
 			application: {
-				clock: {title: "Clock", icon: "clock-o" },
-				weather: {title: "Weather", icon: "cloud"},
-				crypto: {title: "Crypto Stock Values", icon: "bitcoin" },
-				calendar: {title: "Calendar", icon: "calendar"},
-				mensa: {title: "Mensa Offer", icon: "apple" },
-				transportation: {title: "Public Transportation", icon: "bus" },
-				speech: {title: "Speech Recogn. Output", icon: "comment"},
-				newsfeed: {title: "Heise Newsfeed", icon: "rss-square" },
-				bivital: {title: "Vital Data" , icon: "heart"},
-				soccer:{title: "Soccer Results", icon:"circle"},
-				back: {title: "Back" , icon: "undo" },
-				close: {title: "Close" , icon: "times-circle" }
+				clock: {title: "Clock", icon: "fa fa-clock-o" },
+				weather: {title: "Weather", icon: "fa fa-cloud"},
+				crypto: {title: "Crypto Stock Values", icon: "fa fa-bitcoin" },
+				calendar: {title: "Calendar", icon: "fa fa-calendar"},
+				mensa: {title: "Mensa Offer", icon: "fa fa-apple" },
+				transportation: {title: "Public Transportation", icon: "fa fa-bus" },
+				speech: {title: "Speech Recogn. Output", icon: "fa fa-comment"},
+				newsfeed: {title: "Heise Newsfeed", icon: "fa fa-rss-square" },
+				bivital: {title: "Vital Data" , icon: "fa fa-heart"},
+				soccer:{title: "Soccer Results", icon:"fa fa-circle"},
+				back: {title: "Back" , icon: "fa fa-undo" },
+				close: {title: "Close" , icon: "fa fa-times-circle" }
 			},
 			preferences: {
-				user: {title: "Addjust user settings", icon: "user"},
-				face: {title: "Face recognition settings", icon: "grin"},
-				back: {title: "Back" , icon: "undo" },
-				close: {title: "Close" , icon: "times-circle" }
+				user: {title: "Addjust user settings", icon: "fa fa-user"},
+				face: {title: "Face recognition settings", icon: "fa fa-user-circle"},
+				back: {title: "Back" , icon: "fa fa-undo" },
+				close: {title: "Close" , icon: "fa fa-times-circle" }
+			},
+			user_settings: {
+				language: {title:"language:", icon: "fa fa-globe"},
+				back: {title: "Back" , icon: "fa fa-undo" },
+				close: {title: "Close" , icon: "fa fa-times-circle" }
 			}
 		}
 
@@ -98,7 +119,8 @@ Module.register("smartmirror-main-menu", {
 	start: function() {
 		console.log(this.name + " has started...");
 		this.menuObjPointer = this.config.menuObj.none;
-
+		this.config.menuObj.user_settings.language.title = "language: " + config.language;
+		
 	},
 
 	/**
@@ -144,7 +166,7 @@ Module.register("smartmirror-main-menu", {
 			row.appendChild(namecell);
 
 			var span = document.createElement("span");
-	        	span.innerHTML = `<i class="fa fa-${this.menuObjPointer[k].icon}" aria-hidden="true"></i>`;
+	        	span.innerHTML = `<i class="${this.menuObjPointer[k].icon}" aria-hidden="true"></i>`;
 		
 			if (k == selectedObject){
 				span.classList.add('pulse'); 
@@ -182,6 +204,16 @@ Module.register("smartmirror-main-menu", {
 				this.currentMenuAmount = Object.keys(this.menuObjPointer).length;
 				this.selectedNum = -1;
 				this.updateDom();
+			}else if(payload === 'augmentations'){
+				this.menuObjPointer = this.config.menuObj.augmentations;
+				this.currentMenuAmount = Object.keys(this.menuObjPointer).length;
+				this.selectedNum = -1;
+				this.updateDom();
+			}else if(payload === 'messevideo'){
+				this.menuObjPointer = this.config.menuObj.messevideo;
+				this.currentMenuAmount = Object.keys(this.menuObjPointer).length;
+				this.selectedNum = -1;
+				this.updateDom();
 			}else if(payload === 'application'){
 				this.menuObjPointer = this.config.menuObj.application;
 				this.currentMenuAmount = Object.keys(this.menuObjPointer).length;
@@ -191,6 +223,12 @@ Module.register("smartmirror-main-menu", {
 				this.menuObjPointer = this.config.menuObj.preferences;
 				this.currentMenuAmount = Object.keys(this.menuObjPointer).length;
 				this.selectedNum = -1;
+				this.updateDom();
+			}else if(payload === 'user_settings'){
+				this.menuObjPointer = this.config.menuObj.user_settings;
+				this.currentMenuAmount = Object.keys(this.menuObjPointer).length;
+				this.selectedNum = -1;
+				this.config.menuObj.user_settings.language.title = "language: " + config.language;
 				this.updateDom();
 			}else if(payload === 'none'){
 				this.menuObjPointer = this.config.menuObj.none;
