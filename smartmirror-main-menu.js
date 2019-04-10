@@ -1,3 +1,12 @@
+/**
+ * @file smartmirror-main-menu.js
+ *
+ * @author nkucza
+ * @license MIT
+ *
+ * @see  https://github.com/NKucza/smartmirror-main-menu
+ */
+
 Module.register("smartmirror-main-menu", {
    
 	menuObjPointer:  0,
