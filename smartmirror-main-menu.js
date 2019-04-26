@@ -12,8 +12,8 @@ Module.register("smartmirror-main-menu", {
 			},			
 			main: {
 				camera: {title: "Camera Detections", icon: "fa fa-television"},					
-				augmentations: {title: "Image Augmentations", icon: "fa fa-file"},
-				messevideo: {title: "Show messe video", icon: "fa fa-film"},
+				augmentations: {title: "AI Art Mirror", icon: "fa fa-file"},
+				//messevideo: {title: "Show messe video", icon: "fa fa-film"},
 				applications: {title: "Available Applications" , icon: "fa fa-clone"},
 				preferences: {title: "Preferences" , icon: "fa fa-cogs"},
 				close: {title: "Close" , icon: "fa fa-times-circle" },
@@ -34,11 +34,11 @@ Module.register("smartmirror-main-menu", {
 				close: {title: "Close" , icon: "fa fa-times-circle" }
 			},
 			augmentations: {
-				aiartmiror: {title: "Ai-Art-Mirror", icon: "fa fa-palette"},
-				randomsytle: {title: "Toggle Styles Automatically", icon : ""},
-				nextsytle: {title: "Next Style", icon: ""},
-				prevsytle: {title: "Previous Style", icon: ""},
-				sourcesytle: {title: "Display Sources", icon: ""},
+				aiartmiror: {title: "Ai-Art-Mirror", icon: "fa fa-image"},
+				randomsytle: {title: "Toggle Styles Automatically", icon : "fa fa-toggle-on"},
+				nextsytle: {title: "Next Style", icon: "fa fa-arrow-right"},
+				prevsytle: {title: "Previous Style", icon: "fa fa-arrow-left"},
+				sourcesytle: {title: "Display Sources", icon: "fa fa-exchange"},
 				back: {title: "Back" , icon: "fa fa-undo" },
 				close: {title: "Close" , icon: "fa fa-times-circle" }
 			},
